@@ -10,8 +10,8 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-app.use('/api', proxy(ENDPOINTS.API));
-app.use('/', proxy(ENDPOINTS.FRONTEND));
+if (ENDPOINTS.API) app.use('/api', proxy(ENDPOINTS.API));
+if (ENDPOINTS.FRONTEND) app.use('/', proxy(ENDPOINTS.FRONTEND));
 
 app.listen(PORT, () => {
   console.log(`GATEWAY IS LISTENING TO PORT ${PORT}`);
